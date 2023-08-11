@@ -11,7 +11,7 @@ public interface TodoService {
 
     MessageResponse update(TodoDto todoDto) ;
 
-    TodoDto getTodo(Long id) throws ResourceNotFoundException;
+    TodoDto getTodoById(Long id) throws ResourceNotFoundException;
 
     void delete(Long id) throws ResourceNotFoundException;
 
