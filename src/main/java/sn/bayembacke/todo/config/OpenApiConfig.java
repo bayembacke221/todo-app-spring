@@ -1,6 +1,9 @@
 package sn.bayembacke.todo.config;
 
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.servers.Server;
 import org.springdoc.core.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.Components;
@@ -9,28 +12,32 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
 
+import java.util.List;
+
 
 @Configuration
 public class OpenApiConfig {
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("Api")
-                .pathsToMatch("/api/**")
-                .build();
-    }
-    @Bean
-    public OpenAPI springShopOpenAPI(){
-        return new OpenAPI()
-                .components(new Components())
-                .info(new Info().title("Todo API")
-                        .description("Todo API implemented with Spring Boot RESTful service and documented using springdoc-openapi and OpenAPI 3.0")
-                        .version("v1.0.0")
-                        .license(new License().name("Apache 2.0").url("http://springdoc.org")))
-                .externalDocs(new ExternalDocumentation()
-                        .description("Todo API Wiki Documentation")
-                        .url("https://Formation-api.wiki.github.org/docs"));
+    public OpenAPI myOpenAPI() {
+        Server devServer = new Server();
+        devServer.setUrl("http://localhost:8090");
+        devServer.setDescription("Server URL in Development environment");
+
+        Contact contact = new Contact();
+        contact.setEmail("mbackembaye74@gmail.com");
+        contact.setName("Baye Mbacke");
+
+        License mitLicense = new License().name("MIT License").url("https://choosealicense.com/licenses/mit/");
+
+        Info info = new Info()
+                .title("Tutorial Management API")
+                .version("1.0")
+                .contact(contact)
+                .description("This API exposes endpoints to manage tutorials.")
+                .license(mitLicense);
+
+        return new OpenAPI().info(info).servers(List.of(devServer));
     }
 
 
