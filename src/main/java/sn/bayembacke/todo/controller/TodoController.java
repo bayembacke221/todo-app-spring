@@ -8,7 +8,6 @@ import sn.bayembacke.todo.exception.ResourceNotFoundException;
 import sn.bayembacke.todo.payload.response.MessageResponse;
 import sn.bayembacke.todo.service.TodoService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
