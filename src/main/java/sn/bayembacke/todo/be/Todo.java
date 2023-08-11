@@ -21,13 +21,6 @@ public class Todo implements Serializable {
         this.done = done;
     }
 
-    public Todo(Long id, String title, String description, boolean done) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.done = done;
-    }
-
     public Long getId() {
         return id;
     }
